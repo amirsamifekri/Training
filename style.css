@@ -1,0 +1,285 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@300;400;500;600&display=swap"); */
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* start global variables */
+:root {
+  --body-color: #e4e9f7;
+  --nav-color: #4070f4;
+  --side-nav: #010718;
+  --text-color: #fff;
+  --search-bar: #f2f2f2;
+  --search-text: #010718;
+}
+/* end global variables */
+
+body {
+  height: 100vh;
+  background-color: var(--body-color);
+}
+body.dark {
+  --body-color: #18191a;
+  --nav-color: #242526;
+  --side-nav: #242526;
+  --text-color: #ccc;
+  --search-bar: #242526;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 70px;
+  background-color: var(--nav-color);
+  width: 100%;
+}
+
+nav .nav-bar {
+  position: relative;
+  height: 100%;
+  /* background-color: red; */
+  width: 100%;
+  max-width: 1000px;
+  /* your width is like your parant as well as the width of parent less than or equal 1000 pixel */
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu .logo-toggle {
+  display: none;
+}
+
+.side-bar-open {
+  color: var(--text-color);
+  font-size: 25px;
+  padding: 5px;
+  cursor: pointer;
+  display: none;
+}
+
+ul.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+ul.nav-links li {
+  list-style: none;
+  margin: 0 5px;
+}
+
+ul.nav-links li a {
+  position: relative;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 10px;
+}
+
+ul.nav-links li a::before {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* when you hover on every li */
+
+ul.nav-links li:hover a::before {
+  opacity: 1;
+}
+
+.nav-bar .logo a {
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text-color);
+  position: relative;
+}
+
+.darkLight-searchBox {
+  display: flex;
+  align-items: center;
+}
+
+.dark-light,
+.search-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+
+/* styles for the four icons */
+.darkLight-searchBox i {
+  position: absolute;
+  color: var(--text-color);
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* start toggle mode icons */
+.dark-light .sun {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dark-light.active .sun {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dark-light .moon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dark-light.active .moon {
+  opacity: 0;
+  pointer-events: none;
+}
+/* end toggle mode icons */
+/* start toggle search icons */
+.search-toggle .search {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-toggle.active .search {
+  opacity: 0;
+  pointer-events: none;
+}
+.search-toggle .cancel {
+  opacity: 0;
+  pointer-events: none;
+}
+.search-toggle.active .cancel {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* end toggle search icons */
+
+.search-box {
+  position: relative;
+}
+
+.search-box .search-field {
+  position: absolute;
+  bottom: -85px;
+  right: 5px;
+  height: 50px;
+  width: 300px;
+  background-color: var(--nav-color);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+/* toggle the search input box */
+.search-toggle.active + .search-field {
+  bottom: -74px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-box .search-field::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--nav-color);
+  transform: rotate(45deg);
+  right: 15px;
+  top: -4px;
+  z-index: -1;
+}
+
+.search-field input {
+  width: 100%;
+  color: var(--search-text);
+  height: 100%;
+  padding: 0 45px 0 15px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: var(--search-bar);
+}
+
+.search-field i {
+  position: absolute;
+  right: 15px;
+  color: var(--nav-color);
+  font-size: 22px;
+}
+
+body.dark .search-field input {
+  color: var(--text-color);
+}
+
+body.dark .search-field i {
+  color: var(--text-color);
+}
+
+@media (max-width: 790px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 320px;
+    height: 100%;
+    background-color: var(--side-nav);
+    transition: 0.3s ease;
+  }
+  nav.active .menu {
+    left: 0;
+  }
+
+  ul.nav-links {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  ul.nav-links li a {
+    margin-top: 20px;
+    display: block;
+  }
+
+  .menu .logo-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .menu .logo-toggle .side-bar-close {
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .side-bar-open {
+    display: block;
+  }
+}
